@@ -3,7 +3,7 @@ import Header from "./Components/Header/Header";
 
 const ViewAddresses = () => {
   return (
-    <div className="mx-20 my-5">
+    <div className="px-5 py-2 md:px-20 md:py-5">
       <Header />
       <Body />
     </div>

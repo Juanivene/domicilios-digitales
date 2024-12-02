@@ -28,13 +28,19 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function ConentTable() {
   return (
-    <TableContainer component={Paper} className="mt-2">
+    <TableContainer component={Paper} sx={{ marginTop: 1, borderRadius: 5 }}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Apellido</StyledTableCell>
-            <StyledTableCell align="left">Nombre</StyledTableCell>
-            <StyledTableCell align="right">Perfil</StyledTableCell>
+            <StyledTableCell sx={{ fontWeight: "bold" }}>
+              Apellido
+            </StyledTableCell>
+            <StyledTableCell align="left" sx={{ fontWeight: "bold" }}>
+              Nombre
+            </StyledTableCell>
+            <StyledTableCell align="right" sx={{ fontWeight: "bold" }}>
+              Perfil
+            </StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
