@@ -3,24 +3,24 @@ import SearchIcon from "@mui/icons-material/Search";
 
 const Title = () => {
   return (
-    <Grid container alignItems="center">
-      <Grid item xs={4}>
-        <h2 className="text-xl">Listado</h2>
+    <Grid container alignItems="center" spacing={2} className="mt-5">
+      <Grid item xs={12} md={4} lg={4} className="text-center md:text-left">
+        <h2 className="text-xl font-bold">Listado</h2>
       </Grid>
-      <Grid item xs={8}>
-        <form className="flex items-center justify-end">
-          <label className="mx-1 text-lg">Mostrar</label>
-          <select className="select w-28 h-16">
-            <option className="font-bold w-28">15</option>
-            <option className="font-bold w-28">25</option>
-            <option className="font-bold w-28">50</option>
-          </select>
 
+      <Grid item xs={12} md={8} lg={8}>
+        <form className="flex flex-wrap items-center justify-center md:justify-end">
+          <label className="mx-1 text-lg">Mostrar</label>
+          <select className="select w-20 h-14">
+            <option className="font-bold">15</option>
+            <option className="font-bold">25</option>
+            <option className="font-bold">50</option>
+          </select>
           <button
             type="submit"
-            className="btn w-50 h-16 tex bg-customBlue text-white hover:bg-blue-900 rounded-xl  ml-2"
+            className="btn flex items-center w-30 h-14 text-sm bg-customBlue text-white hover:bg-blue-900 rounded-xl ml-2"
           >
-            <SearchIcon className="w-5 h-5" />
+            <SearchIcon className="w-4 h-4 sm:w-5 sm:h-5 mr-1" />
             Buscar
           </button>
         </form>
