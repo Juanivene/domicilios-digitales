@@ -1,4 +1,47 @@
-const ModalContent = () => {
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+import { Filters, getAddressesFn } from "../../../api/addresses";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+
+const ModalContent = (props) => {
+  const { itemsPerPage, setFilters, filters, modalRef } = props;
+  const queryClient = useQueryClient();
+
+  const { register, handleSubmit: handleSubmitRHF } = useForm<Filters>();
+
+  useQuery({
+    queryKey: ["addresses", itemsPerPage, filters],
+    queryFn: (context) => {
+      const queryKey = context.queryKey as [string, number, Filters];
+      return getAddressesFn(queryKey);
+    },
+    enabled: !!filters,
+  });
+
+  const handleSubmit = (data: Filters) => {
+    if (!data.lastName && !data.name && !data.profile) {
+      Swal.mixin({
+        title: "Complete al menos un campo para realizar la busqueda",
+        icon: "error",
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        },
+      }).fire();
+
+      return;
+    }
+    setFilters(data);
+    queryClient.invalidateQueries(["addresses"]);
+    if (modalRef.current) {
+      modalRef.current.checked = false;
+    }
+  };
   return (
     <div className="modal-box">
       <h3 className="text-lg font-bold">Filtrar resultados</h3>
@@ -6,15 +49,14 @@ const ModalContent = () => {
         Aquí puede filtrar según uno o varios de los siguientes campos:
       </p>
 
-      <form className="space-y-4">
+      <form onSubmit={handleSubmitRHF(handleSubmit)} className="space-y-4">
         <div>
           <label htmlFor="apellido" className="block text-sm font-medium">
             Apellido
           </label>
           <input
-            id="apellido"
-            type="text"
             className="input input-bordered w-full"
+            {...register("lastName", {})}
           />
         </div>
 
@@ -23,9 +65,8 @@ const ModalContent = () => {
             Nombre
           </label>
           <input
-            id="nombre"
-            type="text"
             className="input input-bordered w-full"
+            {...register("name", {})}
           />
         </div>
 
@@ -33,7 +74,10 @@ const ModalContent = () => {
           <label htmlFor="perfil" className="block text-sm font-medium">
             Perfil
           </label>
-          <select id="perfil" className="select select-bordered w-full">
+          <select
+            className="select select-bordered w-full"
+            {...register("profile", {})}
+          >
             <option value="">Seleccionar perfil</option>
             <option value="Admin">Admin</option>
             <option value="Usuario">Usuario</option>
