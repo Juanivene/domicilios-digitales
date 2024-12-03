@@ -6,6 +6,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { useQuery } from "@tanstack/react-query";
+import { getAddressesFn } from "../../../api/addresses";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -26,7 +28,22 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export default function ConentTable() {
+export default function ContentTable(props) {
+  const { itemsPerPage, filters } = props;
+  const {
+    data: addresses,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["addresses", itemsPerPage, filters],
+    queryFn: (context) => {
+      const queryKey = context.queryKey as [string, number];
+      return getAddressesFn(queryKey);
+    },
+  });
+  if (isLoading) return <div>Cargando..</div>;
+  if (isError) return <div>error wacho</div>;
+
   return (
     <TableContainer component={Paper} sx={{ marginTop: 1, borderRadius: 5 }}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -43,13 +60,21 @@ export default function ConentTable() {
             </StyledTableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
-          <StyledTableRow>
-            <StyledTableCell component="th" scope="row"></StyledTableCell>
-            <StyledTableCell align="left"></StyledTableCell>
-            <StyledTableCell align="right"></StyledTableCell>
-          </StyledTableRow>
-        </TableBody>
+        {addresses?.content.map((address) => {
+          return (
+            <TableBody key={address.id}>
+              <StyledTableRow>
+                <StyledTableCell component="th" scope="row">
+                  {address.lastName}
+                </StyledTableCell>
+                <StyledTableCell align="left">{address.name}</StyledTableCell>
+                <StyledTableCell align="right">
+                  {address.profile.name}
+                </StyledTableCell>
+              </StyledTableRow>
+            </TableBody>
+          );
+        })}
       </Table>
     </TableContainer>
   );
