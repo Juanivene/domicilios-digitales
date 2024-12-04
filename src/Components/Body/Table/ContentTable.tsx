@@ -7,12 +7,13 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useQuery } from "@tanstack/react-query";
-import { getAddressesFn } from "../../../api/addresses";
+import { Filters, getAddressesFn } from "../../../api/addresses";
+import CardContentTable from "./CardContentTable";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.white,
-    color: theme.palette.common.black,
+    backgroundColor: " rgb(63 117 168)",
+    color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
@@ -27,17 +28,22 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
+type Props = {
+  itemsPerPage: number;
+  filters: Filters;
+  index: number;
+};
 
-export default function ContentTable(props) {
-  const { itemsPerPage, filters } = props;
+export default function ContentTable(props: Props) {
+  const { itemsPerPage, filters, index } = props;
   const {
     data: addresses,
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["addresses", itemsPerPage, filters],
+    queryKey: ["addresses", itemsPerPage, filters, index],
     queryFn: (context) => {
-      const queryKey = context.queryKey as [string, number];
+      const queryKey = context.queryKey as [string, number, Filters, number];
       return getAddressesFn(queryKey);
     },
   });
@@ -45,37 +51,46 @@ export default function ContentTable(props) {
   if (isError) return <div>error wacho</div>;
 
   return (
-    <TableContainer component={Paper} sx={{ marginTop: 1, borderRadius: 5 }}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell sx={{ fontWeight: "bold" }}>
-              Apellido
-            </StyledTableCell>
-            <StyledTableCell align="left" sx={{ fontWeight: "bold" }}>
-              Nombre
-            </StyledTableCell>
-            <StyledTableCell align="right" sx={{ fontWeight: "bold" }}>
-              Perfil
-            </StyledTableCell>
-          </TableRow>
-        </TableHead>
-        {addresses?.content.map((address) => {
-          return (
-            <TableBody key={address.id}>
-              <StyledTableRow>
-                <StyledTableCell component="th" scope="row">
-                  {address.lastName}
-                </StyledTableCell>
-                <StyledTableCell align="left">{address.name}</StyledTableCell>
-                <StyledTableCell align="right">
-                  {address.profile.name}
-                </StyledTableCell>
-              </StyledTableRow>
-            </TableBody>
-          );
-        })}
-      </Table>
-    </TableContainer>
+    <div>
+      <TableContainer
+        component={Paper}
+        sx={{ marginTop: 1, borderRadius: 5 }}
+        className="hidden lg:block"
+      >
+        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell sx={{ fontWeight: "bold" }}>
+                Apellido
+              </StyledTableCell>
+              <StyledTableCell align="left" sx={{ fontWeight: "bold" }}>
+                Nombre
+              </StyledTableCell>
+              <StyledTableCell align="right" sx={{ fontWeight: "bold" }}>
+                Perfil
+              </StyledTableCell>
+            </TableRow>
+          </TableHead>
+          {addresses?.content.map((address) => {
+            return (
+              <TableBody key={address.id}>
+                <StyledTableRow>
+                  <StyledTableCell component="th" scope="row">
+                    {address.lastName}
+                  </StyledTableCell>
+                  <StyledTableCell align="left">{address.name}</StyledTableCell>
+                  <StyledTableCell align="right">
+                    {address.profile.name}
+                  </StyledTableCell>
+                </StyledTableRow>
+              </TableBody>
+            );
+          })}
+        </Table>
+      </TableContainer>
+      {addresses?.content.map((address) => {
+        return <CardContentTable address={address} key={address.id} />;
+      })}
+    </div>
   );
 }
