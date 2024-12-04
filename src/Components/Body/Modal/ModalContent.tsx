@@ -1,23 +1,28 @@
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import { Filters, getAddressesFn } from "../../../api/addresses";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { Filters } from "../../../api/addresses";
+type Props = {
+  setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  modalRef: React.RefObject<HTMLInputElement>;
+  filters: Filters;
+  setIndex: React.Dispatch<React.SetStateAction<number>>;
+};
 
-const ModalContent = (props) => {
-  const { itemsPerPage, setFilters, filters, modalRef } = props;
-  const queryClient = useQueryClient();
+const ModalContent = (props: Props) => {
+  const { setFilters, filters, modalRef, setIndex } = props;
 
-  const { register, handleSubmit: handleSubmitRHF } = useForm<Filters>();
+  const {
+    register,
+    reset,
+    setValue,
+    handleSubmit: handleSubmitRHF,
+  } = useForm<Filters>();
 
-  useQuery({
-    queryKey: ["addresses", itemsPerPage, filters],
-    queryFn: (context) => {
-      const queryKey = context.queryKey as [string, number, Filters];
-      return getAddressesFn(queryKey);
-    },
-    enabled: !!filters,
-  });
-
+  if (filters) {
+    setValue("name", filters.name);
+    setValue("lastName", filters.lastName);
+    setValue("profile", filters.profile);
+  }
   const handleSubmit = (data: Filters) => {
     if (!data.lastName && !data.name && !data.profile) {
       Swal.mixin({
@@ -37,10 +42,15 @@ const ModalContent = (props) => {
       return;
     }
     setFilters(data);
-    queryClient.invalidateQueries(["addresses"]);
+    setIndex(0);
     if (modalRef.current) {
       modalRef.current.checked = false;
     }
+  };
+  const handleReset = () => {
+    reset();
+    setFilters({ lastName: null, name: null, profile: null });
+    setIndex(0);
   };
   return (
     <div className="modal-box">
@@ -79,14 +89,14 @@ const ModalContent = (props) => {
             {...register("profile", {})}
           >
             <option value="">Seleccionar perfil</option>
-            <option value="Admin">Admin</option>
-            <option value="Usuario">Usuario</option>
-            <option value="Visitante">Visitante</option>
+            <option value="ABOGADO/PROCURADOR">ABOGADO/PROCURADOR</option>
+            <option value="ENTIDAD">ENTIDAD</option>
+            <option value="PERITO/OTRO">PERITO/OTRO</option>
           </select>
         </div>
 
         <div className="flex justify-between items-center mt-4">
-          <button type="button" className="btn btn-ghost">
+          <button onClick={handleReset} type="button" className="btn btn-ghost">
             Limpiar
           </button>
           <div className="flex space-x-2">
