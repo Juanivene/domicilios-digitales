@@ -12,7 +12,7 @@ const Header = () => {
       >
         <img
           className="w-96"
-          src="https://domiciliosdigitales.justucuman.gov.ar/img/logos/logo-corte.png"
+          src="src/images/logo-corte.png"
           alt="logo corte suprema de justicia"
         />
       </Grid>

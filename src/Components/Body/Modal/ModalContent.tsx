@@ -61,48 +61,72 @@ const ModalContent = (props: Props) => {
 
       <form onSubmit={handleSubmitRHF(handleSubmit)} className="space-y-4">
         <div>
-          <label htmlFor="apellido" className="block text-sm font-medium dark:text-white">
+          <label
+            htmlFor="apellido"
+            className="block text-sm font-medium dark:text-white"
+          >
             Apellido
           </label>
           <input
             maxLength={20}
-            className="input input-bordered w-full dark:bg-gray-300"
+            className="input input-bordered w-full dark:bg-transparent dark:border-gray-400 dark:text-white "
             {...register("lastName", {})}
           />
         </div>
 
         <div>
-          <label htmlFor="nombre" className="block text-sm font-medium dark:text-white ">
+          <label
+            htmlFor="nombre"
+            className="block text-sm font-medium dark:text-white "
+          >
             Nombre
           </label>
           <input
             maxLength={20}
-            className="input input-bordered w-full dark:bg-gray-300 "
+            className="input input-bordered w-full dark:bg-transparent dark:border-gray-400 dark:text-white  "
             {...register("name", {})}
           />
         </div>
 
         <div>
-          <label htmlFor="perfil" className="block text-sm font-medium dark:text-white">
+          <label
+            htmlFor="perfil"
+            className="block text-sm font-medium dark:text-white"
+          >
             Perfil
           </label>
           <select
-            className="select select-bordered w-full dark:bg-gray-300"
+            className="select select-bordered w-full dark:bg-transparent dark:border-gray-400 dark:text-white "
             {...register("profile", {})}
           >
-            <option value="">Seleccionar perfil</option>
-            <option value="ABOGADO/PROCURADOR">ABOGADO/PROCURADOR</option>
-            <option value="ENTIDAD">ENTIDAD</option>
-            <option value="PERITO/OTRO">PERITO/OTRO</option>
+            <option className="dark:bg-bgDark" value="">
+              Seleccionar perfil
+            </option>
+            <option className="dark:bg-bgDark" value="ABOGADO/PROCURADOR">
+              ABOGADO/PROCURADOR
+            </option>
+            <option className="dark:bg-bgDark" value="ENTIDAD">
+              ENTIDAD
+            </option>
+            <option className="dark:bg-bgDark" value="PERITO/OTRO">
+              PERITO/OTRO
+            </option>
           </select>
         </div>
 
         <div className="flex justify-between items-center mt-4">
-          <button onClick={handleReset} type="button" className="btn btn-ghost dark:text-white">
+          <button
+            onClick={handleReset}
+            type="button"
+            className="btn btn-ghost dark:text-white"
+          >
             Limpiar
           </button>
           <div className="flex space-x-2">
-            <label htmlFor="my_modal_6" className="btn btn-ghost dark:text-red-500  text-red-700">
+            <label
+              htmlFor="my_modal_6"
+              className="btn btn-ghost dark:text-red-500  text-red-700"
+            >
               Cancelar
             </label>
             <button
