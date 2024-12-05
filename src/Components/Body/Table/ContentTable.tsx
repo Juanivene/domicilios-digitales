@@ -9,9 +9,8 @@ import Paper from "@mui/material/Paper";
 import { useQuery } from "@tanstack/react-query";
 import { Filters, getAddressesFn } from "../../../api/addresses";
 import CardContentTable from "./CardContentTable";
-import Loader from "../../ui/Loader";
-import Error from "../../ui/Error";
-import AlertNoData from "../../ui/AlertNoData";
+import Loader from "../../feedback/Loader";
+import AlertNoData from "../../feedback/AlertNoData";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,10 +34,11 @@ type Props = {
   itemsPerPage: number;
   filters: Filters;
   index: number;
+  setError: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function ContentTable(props: Props) {
-  const { itemsPerPage, filters, index } = props;
+  const { itemsPerPage, filters, index, setError } = props;
   const {
     data: addresses,
     isLoading,
@@ -51,7 +51,7 @@ export default function ContentTable(props: Props) {
     },
   });
   if (isLoading) return <Loader />;
-  if (isError) return <Error />;
+  if (isError) setError(true);
   if (addresses?.content.length === 0) return <AlertNoData />;
   return (
     <div>

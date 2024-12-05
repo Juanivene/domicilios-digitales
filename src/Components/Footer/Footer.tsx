@@ -2,7 +2,7 @@ import Grid from "../Grid/Grid";
 
 const Footer = () => {
   return (
-    <Grid container className="mt-5">
+    <Grid container>
       <Grid item xs={12} className="text-center">
         © 2024 - Poder Judicial de Tucumán - Dirección de Sistemas
       </Grid>
