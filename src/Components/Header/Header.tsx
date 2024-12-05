@@ -8,7 +8,7 @@ const Header = () => {
         xs={12}
         md={6}
         lg={6}
-        className="flex justify-center sm:justify-start"
+        className="flex justify-center md:justify-start"
       >
         <img
           className="w-96"
@@ -21,7 +21,7 @@ const Header = () => {
         xs={12}
         md={6}
         lg={6}
-        className="flex justify-center sm:justify-end items-center"
+        className="flex justify-center md:justify-end items-center"
       >
         <h1 className="text-2xl font-bold">Domicilio digital</h1>
       </Grid>
