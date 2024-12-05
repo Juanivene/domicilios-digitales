@@ -53,41 +53,41 @@ const ModalContent = (props: Props) => {
     setIndex(0);
   };
   return (
-    <div className="modal-box">
-      <h3 className="text-lg font-bold">Filtrar resultados</h3>
-      <p className="py-4">
+    <div className="modal-box dark:bg-bgDark">
+      <h3 className="text-lg font-bold dark:text-white">Filtrar resultados</h3>
+      <p className="py-4 dark:text-white">
         Aquí puede filtrar según uno o varios de los siguientes campos:
       </p>
 
       <form onSubmit={handleSubmitRHF(handleSubmit)} className="space-y-4">
         <div>
-          <label htmlFor="apellido" className="block text-sm font-medium">
+          <label htmlFor="apellido" className="block text-sm font-medium dark:text-white">
             Apellido
           </label>
           <input
             maxLength={20}
-            className="input input-bordered w-full"
+            className="input input-bordered w-full dark:bg-gray-300"
             {...register("lastName", {})}
           />
         </div>
 
         <div>
-          <label htmlFor="nombre" className="block text-sm font-medium">
+          <label htmlFor="nombre" className="block text-sm font-medium dark:text-white ">
             Nombre
           </label>
           <input
             maxLength={20}
-            className="input input-bordered w-full"
+            className="input input-bordered w-full dark:bg-gray-300 "
             {...register("name", {})}
           />
         </div>
 
         <div>
-          <label htmlFor="perfil" className="block text-sm font-medium">
+          <label htmlFor="perfil" className="block text-sm font-medium dark:text-white">
             Perfil
           </label>
           <select
-            className="select select-bordered w-full"
+            className="select select-bordered w-full dark:bg-gray-300"
             {...register("profile", {})}
           >
             <option value="">Seleccionar perfil</option>
@@ -98,11 +98,11 @@ const ModalContent = (props: Props) => {
         </div>
 
         <div className="flex justify-between items-center mt-4">
-          <button onClick={handleReset} type="button" className="btn btn-ghost">
+          <button onClick={handleReset} type="button" className="btn btn-ghost dark:text-white">
             Limpiar
           </button>
           <div className="flex space-x-2">
-            <label htmlFor="my_modal_6" className="btn btn-ghost  text-red-700">
+            <label htmlFor="my_modal_6" className="btn btn-ghost dark:text-red-500  text-red-700">
               Cancelar
             </label>
             <button

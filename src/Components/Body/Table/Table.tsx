@@ -79,13 +79,13 @@ const Table = () => {
             onChange={handleSelectChange}
             className="select w-20 h-14 dark:border-white dark:bg-transparent dark:text-white"
           >
-            <option value={15} className="font-bold">
+            <option value={15} className="font-bold dark:bg-bgDark">
               15
             </option>
-            <option value={25} className="font-bold">
+            <option value={25} className="font-bold dark:bg-bgDark">
               25
             </option>
-            <option value={50} className="font-bold">
+            <option value={50} className="font-bold dark:bg-bgDark">
               50
             </option>
           </select>
