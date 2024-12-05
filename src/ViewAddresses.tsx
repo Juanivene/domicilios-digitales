@@ -1,11 +1,11 @@
-import Body from "./Components/Body/Body";
+import Table from "./Components/Body/Table/Table";
 import Header from "./Components/Header/Header";
 
 const ViewAddresses = () => {
   return (
-    <div className="px-5 py-2 md:px-20 md:py-5">
+    <div className="px-6 py-3 sm:px-20 sm:py-5">
       <Header />
-      <Body />
+      <Table />
     </div>
   );
 };
