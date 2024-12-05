@@ -10,7 +10,6 @@ const ViewAddresses = () => {
       <Header />
       <Table />
       <Footer />
-
     </div>
   );
 };
