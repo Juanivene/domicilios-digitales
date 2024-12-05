@@ -47,7 +47,7 @@ const Table = () => {
           lg={7}
           className="text-center xxl:text-left"
         >
-          <h2 className="text-2xl font-bold">Listado</h2>
+          <h2 className="text-2xl font-bold dark:text-white">Listado</h2>
 
           {filters.name || filters.lastName || filters.profile ? (
             <div className="hidden xxl:block">
@@ -73,11 +73,11 @@ const Table = () => {
           lg={5}
           className="flex flex-wrap items-center justify-center xxxl:justify-end"
         >
-          <label className="mx-1 text-lg">Mostrar</label>
+          <label className="mx-1 text-lg dark:text-white">Mostrar</label>
           <select
             value={itemsPerPage}
             onChange={handleSelectChange}
-            className="select w-20 h-14"
+            className="select w-20 h-14 dark:border-white dark:bg-transparent dark:text-white"
           >
             <option value={15} className="font-bold">
               15

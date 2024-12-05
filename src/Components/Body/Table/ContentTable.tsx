@@ -78,14 +78,20 @@ export default function ContentTable(props: Props) {
             return (
               <TableBody
                 key={address.id}
-                className="hover:bg-gray-100 transition"
+                className="hover:bg-gray-100  transition"
               >
                 <StyledTableRow>
-                  <StyledTableCell component="th" scope="row">
+                  <StyledTableCell
+                    className="dark:bg-gray-200"
+                    component="th"
+                    scope="row"
+                  >
                     {address.lastName}
                   </StyledTableCell>
-                  <StyledTableCell align="left">{address.name}</StyledTableCell>
-                  <StyledTableCell align="right">
+                  <StyledTableCell className="dark:bg-gray-200" align="left">
+                    {address.name}
+                  </StyledTableCell>
+                  <StyledTableCell className="dark:bg-gray-200" align="right">
                     {address.profile.name}
                   </StyledTableCell>
                 </StyledTableRow>

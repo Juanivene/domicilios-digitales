@@ -49,7 +49,7 @@ const PageTable = (props: Props) => {
           disabled={index === 0}
           className={`join-item btn w-12 sm:w-20 ${
             index === 0
-              ? "opacity-50 cursor-default"
+              ? "opacity-50 cursor-default bg-gray-300 dark:bg-gray-700 dark:text-gray-400"
               : "bg-customBlue border-gray-400 text-white hover:border-gray-500 hover:bg-customBlue transition"
           }`}
         >
@@ -60,13 +60,13 @@ const PageTable = (props: Props) => {
           disabled={index === 0}
           className={`join-item btn w-12 sm:w-20 ${
             index === 0
-              ? "opacity-50 cursor-default"
-              : "bg-transparent border border-gray-400 text-gray-500 hover:bg-customBlue hover:text-white transition"
+              ? "opacity-50 cursor-default bg-gray-300 dark:bg-gray-700 dark:text-gray-400"
+              : "bg-transparent dark:text-white border border-gray-400 text-gray-500 hover:bg-customBlue hover:text-white transition"
           }`}
         >
           <span>◀</span> {index}
         </button>
-        <button className="join-item btn w-12 sm:w-20 bg-transparent border border-gray-400 text-gray-500 cursor-default transition">
+        <button className="join-item btn w-12 sm:w-20 bg-transparent dark:text-white border border-gray-400 text-gray-500 cursor-default transition">
           ({index + 1})
         </button>
         <button
@@ -74,8 +74,8 @@ const PageTable = (props: Props) => {
           disabled={index === totalPages - 1}
           className={`join-item btn w-12 sm:w-20 ${
             index === totalPages - 1
-              ? "opacity-50 cursor-default"
-              : "bg-transparent border border-gray-400 text-gray-500 hover:bg-customBlue hover:text-white transition"
+              ? "opacity-50 cursor-default bg-gray-300 dark:bg-gray-700 dark:text-gray-400"
+              : "bg-transparent dark:text-white border border-gray-400 text-gray-500 hover:bg-customBlue hover:text-white transition"
           }`}
         >
           <span className="block sm:hidden">▶</span> {index + 2}
@@ -86,7 +86,7 @@ const PageTable = (props: Props) => {
           disabled={index === totalPages - 1}
           className={`join-item btn w-12 sm:w-20 ${
             index === totalPages - 1
-              ? "opacity-50 cursor-default"
+              ? "opacity-50 cursor-default bg-gray-300 dark:bg-gray-700 dark:text-gray-400"
               : "bg-customBlue border-gray-400 text-white hover:border-gray-500 hover:bg-customBlue transition"
           }`}
         >
@@ -95,8 +95,8 @@ const PageTable = (props: Props) => {
         </button>
       </div>
       <div className="flex justify-center pt-1">
-        <span className="font-semibold">
-          pagina {index + 1} de {totalPages}
+        <span className="font-semibold dark:text-white">
+          página {index + 1} de {totalPages}
         </span>
       </div>
     </div>

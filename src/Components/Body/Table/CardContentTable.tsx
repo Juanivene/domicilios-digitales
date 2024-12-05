@@ -16,7 +16,7 @@ const CardContentTable = (props: Props) => {
   }
   return (
     <div className="block lg:hidden m-2">
-      <div className="max-w-full rounded-lg bg-white transition-all duration-300 ease-in-out shadow-md hover:shadow-lg hover:bg-gray-100">
+      <div className="max-w-full rounded-lg dark:bg-gray-200 bg-white transition-all duration-300 ease-in-out shadow-md hover:shadow-lg hover:bg-gray-100">
         <div className="bg-customBlue h-2 rounded-t-lg"></div>
         <div className="p-3">
           <div className="flex justify-between items-start">

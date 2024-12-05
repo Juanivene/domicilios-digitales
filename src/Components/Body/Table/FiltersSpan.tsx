@@ -36,7 +36,7 @@ const FiltersSpan = (props: Prop) => {
   return (
     <div className="text-center xxl:text-start mb-2 space-x-1 space-y-1">
       {filters.lastName && (
-        <span className="inline-block px-3 py-1 bg-gray-200 text-gray-700 rounded-lg shadow-sm">
+        <span className="inline-block px-3 py-1 dark:bg-gray-300 bg-gray-200 text-gray-700 rounded-lg shadow-sm">
           <strong>Apellido:</strong> {filters.lastName}
           <button
             onClick={() => handleDeleteFilter("lastName")}
@@ -48,7 +48,7 @@ const FiltersSpan = (props: Prop) => {
         </span>
       )}
       {filters.name && (
-        <span className="inline-block px-3 py-1 bg-gray-200 text-gray-700 rounded-lg shadow-sm">
+        <span className="inline-block px-3 py-1 dark:bg-gray-300 bg-gray-200 text-gray-700 rounded-lg shadow-sm">
           <strong>Nombre:</strong> {filters.name}
           <button
             onClick={() => handleDeleteFilter("name")}
@@ -60,7 +60,7 @@ const FiltersSpan = (props: Prop) => {
         </span>
       )}
       {filters.profile && (
-        <span className="inline-block px-3 py-1 bg-gray-200 text-gray-700 rounded-lg shadow-sm">
+        <span className="inline-block px-3 py-1 dark:bg-gray-300 bg-gray-200 text-gray-700 rounded-lg shadow-sm">
           <strong>Perfil:</strong> {filters.profile}
           <button
             onClick={() => handleDeleteFilter("profile")}
