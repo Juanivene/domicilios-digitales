@@ -5,6 +5,11 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Roboto", "sans-serif"], 
+        slab: ["Roboto Slab", "serif"], 
+        lato: ["Lato", "sans-serif"], 
+      },
       colors: {
         customBlue: "rgb(63, 117, 168)",
         yellowAlert: "rgb(255, 244, 229)",

@@ -1,7 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+* {
+  font-family: "Roboto Slab", Arial !important;
+}
 body {
   font-family: "Roboto", sans-serif;
   background-color: rgb(214, 214, 214);
