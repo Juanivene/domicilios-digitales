@@ -65,6 +65,7 @@ const ModalContent = (props: Props) => {
             Apellido
           </label>
           <input
+            maxLength={20}
             className="input input-bordered w-full"
             {...register("lastName", {})}
           />
@@ -75,6 +76,7 @@ const ModalContent = (props: Props) => {
             Nombre
           </label>
           <input
+            maxLength={20}
             className="input input-bordered w-full"
             {...register("name", {})}
           />
