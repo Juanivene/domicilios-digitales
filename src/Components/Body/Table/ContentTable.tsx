@@ -9,6 +9,9 @@ import Paper from "@mui/material/Paper";
 import { useQuery } from "@tanstack/react-query";
 import { Filters, getAddressesFn } from "../../../api/addresses";
 import CardContentTable from "./CardContentTable";
+import Loader from "../../ui/Loader";
+import Error from "../../ui/Error";
+import AlertNoData from "../../ui/AlertNoData";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -47,9 +50,9 @@ export default function ContentTable(props: Props) {
       return getAddressesFn(queryKey);
     },
   });
-  if (isLoading) return <div>Cargando..</div>;
-  if (isError) return <div>error wacho</div>;
-
+  if (isLoading) return <Loader />;
+  if (isError) return <Error />;
+  if (addresses?.content.length === 0) return <AlertNoData />;
   return (
     <div>
       <TableContainer
@@ -73,7 +76,10 @@ export default function ContentTable(props: Props) {
           </TableHead>
           {addresses?.content.map((address) => {
             return (
-              <TableBody key={address.id}>
+              <TableBody
+                key={address.id}
+                className="hover:bg-gray-100 transition"
+              >
                 <StyledTableRow>
                   <StyledTableCell component="th" scope="row">
                     {address.lastName}
