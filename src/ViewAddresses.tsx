@@ -1,13 +1,16 @@
-import Body from "./Components/Body/Body";
+
+import Table from "./Components/Body/Table/Table";
 import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
 
 const ViewAddresses = () => {
   return (
-    <div className="flex flex-col min-h-screen px-5 py-2 md:px-20 md:py-5">
+
+    <div className="px-6 py-3 sm:px-20 sm:py-5">
       <Header />
-      <Body />
+      <Table />
       <Footer />
+
     </div>
   );
 };
