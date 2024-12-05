@@ -1,26 +1,33 @@
 import ContentTable from "./ContentTable";
-
 import { useRef, useState } from "react";
 import Grid from "../../Grid/Grid";
 import SearchIcon from "@mui/icons-material/Search";
 import ModalContent from "../Modal/ModalContent";
 import { useQuery } from "@tanstack/react-query";
 import { Filters, getAddressesFn } from "../../../api/addresses";
+import PageTable from "./PageTable";
+import FiltersSpan from "./FiltersSpan";
+import Error from "../../ui/Error";
 
 const Table = () => {
   const [itemsPerPage, setItemsPerPage] = useState<number>(15);
-  const [filters, setFilters] = useState<Filters>();
+  const [filters, setFilters] = useState<Filters>({
+    name: "",
+    lastName: "",
+    profile: "",
+  });
+  const [index, setIndex] = useState(0);
   const modalRef = useRef<HTMLInputElement>(null);
 
-  const { isLoading, isError } = useQuery({
+  const { isError } = useQuery({
     queryKey: ["addresses", itemsPerPage],
     queryFn: (context) => {
       const queryKey = context.queryKey as [string, number];
       return getAddressesFn(queryKey);
     },
   });
-  if (isLoading) return <div>cargando..</div>;
-  if (isError) return <div>error</div>;
+
+  if (isError) return <Error />;
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value: string = event.target.value;
     setItemsPerPage(Number(value));
@@ -29,16 +36,39 @@ const Table = () => {
   return (
     <>
       <Grid container alignItems="center" spacing={2} className="mt-5">
-        <Grid item xs={12} md={4} lg={4} className="text-center md:text-left">
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={12}
+          lg={7}
+          className="text-center xxl:text-left"
+        >
           <h2 className="text-2xl font-bold">Listado</h2>
+
+          {filters.name || filters.lastName || filters.profile ? (
+            <div className="hidden xxl:block">
+              <FiltersSpan filters={filters} setFilters={setFilters} />
+            </div>
+          ) : (
+            ""
+          )}
         </Grid>
+        {filters.name || filters.lastName || filters.profile ? (
+          <Grid item xs={12} className="block xxl:hidden ">
+            <FiltersSpan filters={filters} setFilters={setFilters} />
+          </Grid>
+        ) : (
+          ""
+        )}
 
         <Grid
           item
           xs={12}
-          md={8}
-          lg={8}
-          className="flex flex-wrap items-center justify-center md:justify-end"
+          sm={12}
+          md={12}
+          lg={5}
+          className="flex flex-wrap items-center justify-center xxxl:justify-end"
         >
           <label className="mx-1 text-lg">Mostrar</label>
           <select
@@ -72,7 +102,7 @@ const Table = () => {
           />
           <div className="modal" role="dialog">
             <ModalContent
-              itemsPerPage={itemsPerPage}
+              setIndex={setIndex}
               setFilters={setFilters}
               filters={filters}
               modalRef={modalRef}
@@ -81,7 +111,17 @@ const Table = () => {
           </div>
         </Grid>
       </Grid>
-      <ContentTable itemsPerPage={itemsPerPage} filters={filters} />
+      <ContentTable
+        itemsPerPage={itemsPerPage}
+        filters={filters}
+        index={index}
+      />
+      <PageTable
+        index={index}
+        setIndex={setIndex}
+        itemsPerPage={itemsPerPage}
+        filters={filters}
+      />
     </>
   );
 };
