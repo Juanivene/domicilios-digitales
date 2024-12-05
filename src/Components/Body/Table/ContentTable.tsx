@@ -81,11 +81,17 @@ export default function ContentTable(props: Props) {
                 className="hover:bg-gray-100 transition"
               >
                 <StyledTableRow>
-                  <StyledTableCell component="th" scope="row">
+                  <StyledTableCell
+                    className="dark:bg-gray-300"
+                    component="th"
+                    scope="row"
+                  >
                     {address.lastName}
                   </StyledTableCell>
-                  <StyledTableCell align="left">{address.name}</StyledTableCell>
-                  <StyledTableCell align="right">
+                  <StyledTableCell className="dark:bg-gray-300" align="left">
+                    {address.name}
+                  </StyledTableCell>
+                  <StyledTableCell className="dark:bg-gray-300" align="right">
                     {address.profile.name}
                   </StyledTableCell>
                 </StyledTableRow>

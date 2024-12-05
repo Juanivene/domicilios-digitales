@@ -12,7 +12,7 @@ const Header = () => {
       >
         <img
           className="w-96"
-          src="https://domiciliosdigitales.justucuman.gov.ar/img/logos/logo-corte.png"
+          src="src/images/logo-corte.png"
           alt="logo corte suprema de justicia"
         />
       </Grid>
@@ -23,7 +23,9 @@ const Header = () => {
         lg={6}
         className="flex justify-center md:justify-end items-center"
       >
-        <h1 className="text-2xl font-bold">Domicilio digital</h1>
+        <h1 className="text-2xl font-bold dark:text-white">
+          Domicilio digital
+        </h1>
       </Grid>
     </Grid>
   );
