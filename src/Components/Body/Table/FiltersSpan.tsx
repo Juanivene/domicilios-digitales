@@ -3,9 +3,11 @@ import { Filters } from "../../../api/addresses";
 type Prop = {
   filters: Filters;
   setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  error: boolean;
 };
 const FiltersSpan = (props: Prop) => {
-  const { filters, setFilters } = props;
+  const { filters, setFilters, error } = props;
+  if (error) return null;
 
   const handleDeleteFilter = (filter: string) => {
     switch (filter) {

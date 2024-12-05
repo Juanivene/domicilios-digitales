@@ -7,7 +7,6 @@ import { useQuery } from "@tanstack/react-query";
 import { Filters, getAddressesFn } from "../../../api/addresses";
 import PageTable from "./PageTable";
 import FiltersSpan from "./FiltersSpan";
-import Error from "../../feedback/Error";
 
 const Table = () => {
   const [itemsPerPage, setItemsPerPage] = useState<number>(15);
@@ -32,9 +31,7 @@ const Table = () => {
     const value: string = event.target.value;
     setItemsPerPage(Number(value));
   };
-  if (error) {
-    return <Error />;
-  }
+ 
 
   return (
     <>
@@ -51,7 +48,11 @@ const Table = () => {
 
           {filters.name || filters.lastName || filters.profile ? (
             <div className="hidden xxl:block">
-              <FiltersSpan filters={filters} setFilters={setFilters} />
+              <FiltersSpan
+                error={error}
+                filters={filters}
+                setFilters={setFilters}
+              />
             </div>
           ) : (
             ""
@@ -59,7 +60,11 @@ const Table = () => {
         </Grid>
         {filters.name || filters.lastName || filters.profile ? (
           <Grid item xs={12} className="block xxl:hidden ">
-            <FiltersSpan filters={filters} setFilters={setFilters} />
+            <FiltersSpan
+              error={error}
+              filters={filters}
+              setFilters={setFilters}
+            />
           </Grid>
         ) : (
           ""
@@ -125,6 +130,7 @@ const Table = () => {
         setIndex={setIndex}
         itemsPerPage={itemsPerPage}
         filters={filters}
+        error={error}
       />
     </>
   );

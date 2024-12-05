@@ -11,6 +11,7 @@ import { Filters, getAddressesFn } from "../../../api/addresses";
 import CardContentTable from "./CardContentTable";
 import Loader from "../../feedback/Loader";
 import AlertNoData from "../../feedback/AlertNoData";
+import Error from "../../feedback/Error";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -51,7 +52,10 @@ export default function ContentTable(props: Props) {
     },
   });
   if (isLoading) return <Loader />;
-  if (isError) setError(true);
+  if (isError) {
+    setError(true);
+    return <Error />;
+  }
   if (addresses?.content.length === 0) return <AlertNoData />;
   return (
     <div>

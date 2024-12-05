@@ -6,10 +6,12 @@ type Props = {
   index: number;
   itemsPerPage: number;
   filters: Filters;
+  error: boolean;
 };
 
 const PageTable = (props: Props) => {
-  const { setIndex, index, itemsPerPage, filters } = props;
+  const { setIndex, index, itemsPerPage, filters, error } = props;
+  if (error) return null;
 
   const { data: addresses, isLoading } = useQuery({
     queryKey: ["addresses", itemsPerPage, filters, index],
