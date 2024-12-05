@@ -12,7 +12,6 @@ import CardContentTable from "./CardContentTable";
 import Loader from "../../feedback/Loader";
 import AlertNoData from "../../feedback/AlertNoData";
 import Error from "../../feedback/Error";
-
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: " rgb(63 117 168)",
@@ -84,18 +83,24 @@ export default function ContentTable(props: Props) {
                 key={address.id}
                 className="hover:bg-gray-100 transition"
               >
-                <StyledTableRow>
+                <StyledTableRow className="border-b border-gray-300 dark:border-gray-600">
                   <StyledTableCell
-                    className="dark:bg-gray-300"
+                    className="dark:bg-gray-700 dark:text-white"
                     component="th"
                     scope="row"
                   >
                     {address.lastName}
                   </StyledTableCell>
-                  <StyledTableCell className="dark:bg-gray-300" align="left">
+                  <StyledTableCell
+                    className="dark:bg-gray-700 dark:text-white"
+                    align="left"
+                  >
                     {address.name}
                   </StyledTableCell>
-                  <StyledTableCell className="dark:bg-gray-300" align="right">
+                  <StyledTableCell
+                    className="dark:bg-gray-700 dark:text-white"
+                    align="right"
+                  >
                     {address.profile.name}
                   </StyledTableCell>
                 </StyledTableRow>

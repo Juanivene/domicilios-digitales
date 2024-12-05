@@ -15,7 +15,7 @@ export default {
         customBlue: "rgb(63, 117, 168)",
         yellowAlert: "rgb(255, 244, 229)",
         bgGray: "rgb(214, 214, 214)",
-        bgDark: "rgb(54, 54, 54)",
+        bgDark: "rgb(80, 80, 80)",
       },
       screens: {
         xs: "569px",
