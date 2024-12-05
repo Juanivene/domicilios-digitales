@@ -11,7 +11,6 @@ type Props = {
 
 const PageTable = (props: Props) => {
   const { setIndex, index, itemsPerPage, filters, error } = props;
-  if (error) return null;
 
   const { data: addresses, isLoading } = useQuery({
     queryKey: ["addresses", itemsPerPage, filters, index],
@@ -20,6 +19,7 @@ const PageTable = (props: Props) => {
       return getAddressesFn(queryKey);
     },
   });
+  if (error) return null;
 
   const totalPages = addresses?.pagination.totalPages || 0;
 
