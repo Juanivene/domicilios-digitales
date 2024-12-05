@@ -11,11 +11,7 @@ type Props = {
 const PageTable = (props: Props) => {
   const { setIndex, index, itemsPerPage, filters } = props;
 
-  const {
-    data: addresses,
-    isLoading,
-    isError,
-  } = useQuery({
+  const { data: addresses, isLoading } = useQuery({
     queryKey: ["addresses", itemsPerPage, filters, index],
     queryFn: (context) => {
       const queryKey = context.queryKey as [string, number, Filters, number];
@@ -44,7 +40,7 @@ const PageTable = (props: Props) => {
       </div>
     );
   }
-  if (addresses?.content.length === 0 || isError) return null;
+  if (addresses?.content.length === 0) return null;
   return (
     <div>
       <div className="flex justify-center items-center mt-6 join space-x-2 sm:space-x-1 overflow-x-auto">
