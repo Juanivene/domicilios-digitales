@@ -6,6 +6,7 @@ type Prop = {
 };
 const FiltersSpan = (props: Prop) => {
   const { filters, setFilters } = props;
+
   const handleDeleteFilter = (filter: string) => {
     switch (filter) {
       case "lastName":

@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Filters, getAddressesFn } from "../../../api/addresses";
 import PageTable from "./PageTable";
 import FiltersSpan from "./FiltersSpan";
-import Error from "../../ui/Error";
+import Error from "../../feedback/Error";
 
 const Table = () => {
   const [itemsPerPage, setItemsPerPage] = useState<number>(15);
@@ -16,10 +16,11 @@ const Table = () => {
     lastName: "",
     profile: "",
   });
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState<number>(0);
+  const [error, setError] = useState<boolean>(false);
   const modalRef = useRef<HTMLInputElement>(null);
 
-  const { isError } = useQuery({
+  useQuery({
     queryKey: ["addresses", itemsPerPage],
     queryFn: (context) => {
       const queryKey = context.queryKey as [string, number];
@@ -27,11 +28,13 @@ const Table = () => {
     },
   });
 
-  if (isError) return <Error />;
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value: string = event.target.value;
     setItemsPerPage(Number(value));
   };
+  if (error) {
+    return <Error />;
+  }
 
   return (
     <>
@@ -112,6 +115,7 @@ const Table = () => {
         </Grid>
       </Grid>
       <ContentTable
+        setError={setError}
         itemsPerPage={itemsPerPage}
         filters={filters}
         index={index}

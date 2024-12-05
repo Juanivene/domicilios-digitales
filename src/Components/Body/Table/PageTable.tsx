@@ -35,7 +35,7 @@ const PageTable = (props: Props) => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center mt-6">
+      <div className="flex justify-center items-center mt-6 font-semibold">
         Cargando paginado...
       </div>
     );
