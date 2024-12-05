@@ -44,6 +44,7 @@ const ModalContent = (props: Props) => {
     setFilters(data);
     setIndex(0);
     if (modalRef.current) {
+      console.log("hola");
       modalRef.current.checked = false;
     }
   };

@@ -2,14 +2,22 @@ import { useState } from "react";
 import Table from "./Components/Body/Table/Table";
 import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
+import { Filters } from "./api/addresses";
 
 const ViewAddresses = () => {
+  const [itemsPerPage, setItemsPerPage] = useState<number>(15);
+  const [filters, setFilters] = useState<Filters>({
+    name: "",
+    lastName: "",
+    profile: "",
+  });
+  const [index, setIndex] = useState<number>(0);
+  const [error, setError] = useState<boolean>(false);
   const [dark, setDark] = useState(false);
   const handleChangeTheme = () => {
     const newTheme = !dark;
     setDark(newTheme);
   };
-  console.log(dark);
 
   return (
     <div
@@ -21,11 +29,26 @@ const ViewAddresses = () => {
     >
       <div className="px-6 py-3 sm:px-20 sm:py-5 flex-grow">
         <Header />
-        <Table />
+        <Table
+          itemsPerPage={itemsPerPage}
+          setItemsPerPage={setItemsPerPage}
+          filters={filters}
+          setFilters={setFilters}
+          index={index}
+          setIndex={setIndex}
+          error={error}
+          setError={setError}
+        />
       </div>
-      <Footer />
+      <Footer
+        filters={filters}
+        setIndex={setIndex}
+        index={index}
+        itemsPerPage={itemsPerPage}
+        error={error}
+      />
 
-      <label className="swap swap-rotate fixed bottom-5 right-5 p-2 bg-customBlue text-white rounded-full shadow-lg ue focus:outline-none">
+      <label className="swap swap-rotate fixed bottom-5 right-5 p-2 bg-customBlue/60 text-white rounded-full shadow-lg ue focus:outline-none">
         <input type="checkbox" onClick={handleChangeTheme} />
         <svg
           className="swap-on h-10 w-10 fill-current"

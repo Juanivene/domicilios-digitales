@@ -30,7 +30,6 @@ export const getAddressesFn = async (
     }
   }
   const url = `${BACKEND_URL}?${params.toString()}`;
-  console.log(url);
 
   const res = await fetch(url);
   const data = await res.json();

@@ -1,22 +1,33 @@
 import ContentTable from "./ContentTable";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import Grid from "../../Grid/Grid";
 import SearchIcon from "@mui/icons-material/Search";
 import ModalContent from "../Modal/ModalContent";
 import { useQuery } from "@tanstack/react-query";
 import { Filters, getAddressesFn } from "../../../api/addresses";
-import PageTable from "./PageTable";
 import FiltersSpan from "./FiltersSpan";
+type Props = {
+  setIndex: React.Dispatch<React.SetStateAction<number>>;
+  index: number;
+  itemsPerPage: number;
+  setItemsPerPage: React.Dispatch<React.SetStateAction<number>>;
+  filters: Filters;
+  setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  error: boolean;
+  setError: React.Dispatch<React.SetStateAction<boolean>>;
+};
+const Table = (props: Props) => {
+  const {
+    itemsPerPage,
+    setItemsPerPage,
+    filters,
+    setFilters,
+    index,
+    setIndex,
+    error,
+    setError,
+  } = props;
 
-const Table = () => {
-  const [itemsPerPage, setItemsPerPage] = useState<number>(15);
-  const [filters, setFilters] = useState<Filters>({
-    name: "",
-    lastName: "",
-    profile: "",
-  });
-  const [index, setIndex] = useState<number>(0);
-  const [error, setError] = useState<boolean>(false);
   const modalRef = useRef<HTMLInputElement>(null);
 
   useQuery({
@@ -31,7 +42,6 @@ const Table = () => {
     const value: string = event.target.value;
     setItemsPerPage(Number(value));
   };
- 
 
   return (
     <>
@@ -124,13 +134,6 @@ const Table = () => {
         itemsPerPage={itemsPerPage}
         filters={filters}
         index={index}
-      />
-      <PageTable
-        index={index}
-        setIndex={setIndex}
-        itemsPerPage={itemsPerPage}
-        filters={filters}
-        error={error}
       />
     </>
   );
