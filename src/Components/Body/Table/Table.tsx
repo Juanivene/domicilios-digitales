@@ -33,7 +33,7 @@ const Table = (props: Props) => {
   useQuery({
     queryKey: ["addresses", itemsPerPage],
     queryFn: (context) => {
-      const queryKey = context.queryKey as [string, number];
+      const queryKey = context.queryKey as [number];
       return getAddressesFn(queryKey);
     },
   });
@@ -41,6 +41,7 @@ const Table = (props: Props) => {
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value: string = event.target.value;
     setItemsPerPage(Number(value));
+    setIndex(0);
   };
 
   return (
