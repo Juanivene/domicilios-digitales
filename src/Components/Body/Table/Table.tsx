@@ -33,7 +33,7 @@ const Table = (props: Props) => {
   useQuery({
     queryKey: ["addresses", itemsPerPage],
     queryFn: (context) => {
-      const queryKey = context.queryKey as [number];
+      const queryKey = context.queryKey as [string, number];
       return getAddressesFn(queryKey);
     },
   });
