@@ -24,6 +24,7 @@ export const getAddressesFn = async (
   const url = `${BACKEND_URL}?${params.toString()}`;
   const res = await fetch(url);
   const data = await res.json();
+  console.log(data);
 
   if (!res.ok) throw new Error("Ocurrió un error al obtener los datos");
 

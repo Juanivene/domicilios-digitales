@@ -1,4 +1,5 @@
 import containerQuery from "@tailwindcss/container-queries";
+import daisyui from "daisyui";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -25,6 +26,5 @@ export default {
       darkMode: "class",
     },
   },
-
-  plugins: [containerQuery, require("daisyui")],
+  plugins: [containerQuery, daisyui],
 };

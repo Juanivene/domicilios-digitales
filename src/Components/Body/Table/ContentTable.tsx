@@ -51,10 +51,10 @@ export default function ContentTable(props: Props) {
     },
   });
   if (isLoading) return <Loader />;
-  if (isError) {
-    setError(true);
-    return <Error />;
-  }
+  // if (isError) {
+  //   setError(true);
+  //   return <Error />;
+  // }
   if (addresses?.content.length === 0) return <AlertNoData />;
   return (
     <div>

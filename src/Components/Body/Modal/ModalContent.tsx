@@ -54,7 +54,7 @@ const ModalContent = (props: Props) => {
     setIndex(0);
   };
   return (
-    <div className="modal-box dark:bg-bgDark">
+    <div className="modal-box bg-white dark:bg-bgDark">
       <h3 className="text-lg font-bold dark:text-white">Filtrar resultados</h3>
       <p className="py-4 dark:text-white">
         Aquí puede filtrar según uno o varios de los siguientes campos:
@@ -64,13 +64,13 @@ const ModalContent = (props: Props) => {
         <div>
           <label
             htmlFor="apellido"
-            className="block text-sm font-medium dark:text-white"
+            className="block text-sm font-medium text-black dark:text-white"
           >
             Apellido
           </label>
           <input
             maxLength={20}
-            className="input input-bordered w-full dark:bg-transparent dark:border-gray-400 dark:text-white "
+            className="input input-bordered w-full bg-transparent dark:border-gray-400 text-black dark:text-white "
             {...register("lastName", {})}
           />
         </div>
@@ -78,13 +78,13 @@ const ModalContent = (props: Props) => {
         <div>
           <label
             htmlFor="nombre"
-            className="block text-sm font-medium dark:text-white "
+            className="block text-sm font-medium text-black dark:text-white "
           >
             Nombre
           </label>
           <input
             maxLength={20}
-            className="input input-bordered w-full dark:bg-transparent dark:border-gray-400 dark:text-white  "
+            className="input input-bordered w-full bg-transparent dark:border-gray-400 text-black dark:text-white  "
             {...register("name", {})}
           />
         </div>
@@ -92,12 +92,12 @@ const ModalContent = (props: Props) => {
         <div>
           <label
             htmlFor="perfil"
-            className="block text-sm font-medium dark:text-white"
+            className="block text-sm font-medium text-black dark:text-white"
           >
             Perfil
           </label>
           <select
-            className="select select-bordered w-full dark:bg-transparent dark:border-gray-400 dark:text-white "
+            className="select select-bordered w-full bg-transparent dark:border-gray-400 text-black dark:text-white "
             {...register("profile", {})}
           >
             <option className="dark:bg-bgDark" value="">
@@ -119,7 +119,7 @@ const ModalContent = (props: Props) => {
           <button
             onClick={handleReset}
             type="button"
-            className="btn btn-ghost dark:text-white"
+            className="btn btn-ghost text-black dark:text-white"
           >
             Limpiar
           </button>

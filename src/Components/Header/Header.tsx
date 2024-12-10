@@ -23,7 +23,7 @@ const Header = () => {
         lg={6}
         className="flex justify-center md:justify-end items-center"
       >
-        <h1 className="text-2xl font-bold dark:text-white">
+        <h1 className="text-2xl font-bold text-black dark:text-white">
           Domicilio digital
         </h1>
       </Grid>
